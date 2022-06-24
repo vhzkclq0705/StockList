@@ -11,6 +11,7 @@ class StockListViewController: UIViewController {
 
     var stockListView = StockListView()
     
+    
     override func loadView() {
         view = stockListView
     }
@@ -28,7 +29,7 @@ extension StockListViewController: UICollectionViewDelegate,
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 5
+        return 20
     }
     
     func collectionView(

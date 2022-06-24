@@ -42,8 +42,7 @@ class StockListView: UIView {
     // MARK: - Layout
     override func layoutSubviews() {
         collectionView.snp.makeConstraints {
-            $0.left.right.bottom.equalToSuperview()
-            $0.top.equalToSuperview().offset(-50)
+            $0.edges.equalTo(safeAreaLayoutGuide)
         }
     }
 }
