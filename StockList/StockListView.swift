@@ -12,14 +12,17 @@ class StockListView: UIView {
     // MARK: - UI
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        let width = bounds.width
-        layout.itemSize = CGSize(width: width,
-                                 height: width / 5)
+        let width = UIScreen.main.bounds.width
+        layout.itemSize = CGSize(
+            width: width,
+            height: width / 5)
         
-        let collectionView = UICollectionView(frame: .zero,
-                                              collectionViewLayout: layout)
-        collectionView.register(StockListCell.self,
-                                forCellWithReuseIdentifier: StockListCell.identifier)
+        let collectionView = UICollectionView(
+            frame: .zero,
+            collectionViewLayout: layout)
+        collectionView.register(
+            StockListCell.self,
+            forCellWithReuseIdentifier: StockListCell.identifier)
         
         return collectionView
     }()
@@ -36,9 +39,11 @@ class StockListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Layout
     override func layoutSubviews() {
         collectionView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.left.right.bottom.equalToSuperview()
+            $0.top.equalToSuperview().offset(-50)
         }
     }
 }
