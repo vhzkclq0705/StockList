@@ -10,7 +10,15 @@ import UIKit
 class StockListViewController: UIViewController {
 
     var stockListView = StockListView()
-    
+    let stocks = [
+        Stock(company: "테슬라", price: 1238631, percentage: 0.04),
+        Stock(company: "애플", price: 238631, percentage: 1.04),
+        Stock(company: "넷플릭스", price: 438631, percentage: -0.04),
+        Stock(company: "알파벳A", price: 3176631, percentage: 0.04),
+        Stock(company: "아마존", price: 3538631, percentage: 0.04),
+        Stock(company: "나이키", price: 158631, percentage: 0.04),
+        Stock(company: "디즈니", price: 138631, percentage: 0.04),
+    ]
     
     override func loadView() {
         view = stockListView
@@ -29,7 +37,7 @@ extension StockListViewController: UICollectionViewDelegate,
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 20
+        return stocks.count * 2
     }
     
     func collectionView(
@@ -42,9 +50,9 @@ extension StockListViewController: UICollectionViewDelegate,
             return UICollectionViewCell()
         }
         
+        let num = indexPath.row
+        cell.updateUI(stock: stocks[num % 7], rank: num + 1)
         
         return cell
     }
-    
-    
 }

@@ -10,9 +10,9 @@ import SnapKit
 
 class StockListCellView : UIView {
     
-    lazy var number: UILabel = {
+    lazy var rank: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 20)
+        label.font = .boldSystemFont(ofSize: 15)
         label.textColor = .systemBlue
         
         return label
@@ -24,24 +24,25 @@ class StockListCellView : UIView {
         return imageView
     }()
     
-    lazy var name: UILabel = {
+    lazy var company: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 30)
+        label.font = .boldSystemFont(ofSize: 15)
         
         return label
     }()
     
-    lazy var cost: UILabel = {
+    lazy var price: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
-        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .gray
         
         return label
     }()
     
-    lazy var percent: UILabel = {
+    lazy var percentage: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 15)
+        label.font = .systemFont(ofSize: 13)
+        label.textColor = .systemRed
         
         return label
     }()
@@ -62,11 +63,11 @@ class StockListCellView : UIView {
         super.init(frame: frame)
         
         [
-            number,
+            rank,
             logo,
-            name,
-            cost,
-            percent,
+            company,
+            price,
+            percentage,
             heart,
         ]
             .forEach{ addSubview($0) }
@@ -78,32 +79,31 @@ class StockListCellView : UIView {
     }
     
     override func layoutSubviews() {
-        number.snp.makeConstraints {
+        rank.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.equalToSuperview().offset(20)
+            $0.left.equalToSuperview().offset(10)
+            $0.width.equalTo(25)
         }
         
         logo.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.left.equalTo(number.snp.left).offset(20)
-            $0.height.equalTo(logo.snp.width)
+            $0.left.equalTo(rank.snp.right).offset(10)
+            $0.width.height.equalTo(40)
         }
         
-        name.snp.makeConstraints {
+        company.snp.makeConstraints {
             $0.top.equalTo(logo.snp.top)
-            $0.bottom.equalTo(logo.snp.centerY).offset(-10)
             $0.left.equalTo(logo.snp.right).offset(20)
         }
         
-        cost.snp.makeConstraints {
-            $0.top.equalTo(logo.snp.centerY).offset(10)
+        price.snp.makeConstraints {
             $0.bottom.equalTo(logo.snp.bottom)
-            $0.left.equalTo(name.snp.left)
+            $0.left.equalTo(company.snp.left)
         }
         
-        percent.snp.makeConstraints {
-            $0.top.bottom.equalTo(cost)
-            $0.left.equalTo(cost.snp.right).offset(10)
+        percentage.snp.makeConstraints {
+            $0.centerY.equalTo(price)
+            $0.left.equalTo(price.snp.right).offset(5)
         }
         
         heart.snp.makeConstraints {

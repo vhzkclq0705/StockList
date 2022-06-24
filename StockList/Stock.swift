@@ -7,4 +7,8 @@
 
 import Foundation
 
-
+struct Stock {
+    var company: String
+    var price: Int
+    var percentage: Double
+}
